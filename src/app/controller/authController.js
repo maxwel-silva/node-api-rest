@@ -97,7 +97,7 @@ router.post('/forgotPassword', async (request, response) => {
   } catch (error) {
     response.status(400).send({ error: 'Error on forgot password, try again' })
   }
-})
+});
 
 router.post('/resetPassword', async (request, response) => {
 

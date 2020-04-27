@@ -24,6 +24,7 @@
 -  [JSON Web Token](https://www.npmjs.com/package/jsonwebtoken)
 -  [Mongoose](https://www.npmjs.com/package/mongoose)
 -  [Nodemailer](https://nodemailer.com/about/)
+
 ---
 
 Made with ?? by [maxwel-silva](https://github.com/maxwel-silva)
