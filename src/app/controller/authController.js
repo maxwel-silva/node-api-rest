@@ -55,7 +55,7 @@ router.post('/authenticate', async (request, response) => {
   });
 });
 
-router.post('/forgot_password', async (request, response) => {
+router.post('/forgotPassword', async (request, response) => {
   const { email } = request.body;
 
   try {
@@ -81,24 +81,53 @@ router.post('/forgot_password', async (request, response) => {
     mailer.sendMail({
       to: email,
       from: 'lobogawa@gmail.com',
-      template: 'auth/forgot_password',
+      template: 'auth/forgotPassword',
       context: { token },
 
     }, (error) => {
-      if (error)
-      console.log('ERRO QUE ESTÁ DANDO' + error)
+
+      if (error) {
         return response.status(400).send({ error: 'Connot send forgot password email' })
-        
-      return response.send();
-    })
+
+      } else {
+        return response.status(200).send({ successfully: 'Your token was sent' })
+      }
+    });
 
   } catch (error) {
-
-    console.log('ERRO QUE ESTÁ DANDO' + error)
-
     response.status(400).send({ error: 'Error on forgot password, try again' })
   }
+})
 
+router.post('/resetPassword', async (request, response) => {
+
+  const { email, token, password } = request.body;
+
+  try {
+    const user = await User.findOne({ email })
+      .select('+passwordResetToken passwordReseteExpires');
+
+    if (!user) {
+      return response.status(400).send({ error: 'User email not found' });
+    }
+
+    if (token !== user.passwordResetToken) {
+      return response.status(400).send({ error: 'Token invalid' })
+    }
+
+    const now = new Date();
+    if (now > user.passwordResetExpires) {
+      return response.status(400).send({ error: 'Token expired, generate a new one' })
+    }
+
+    user.password = password;
+
+    await user.save();
+    response.status(200).send({ successfully: 'Password redefined' })
+
+  } catch (error) {
+    response.status(400).send({ error: 'Cannot reset password, try again' })
+  }
 });
 
 module.exports = (app) => app.use('/auth', router);
