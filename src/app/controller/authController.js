@@ -8,6 +8,7 @@ const mailer = require('../../modules/mailer')
 
 const authConfig = require('../../config/auth.json')
 const User = require('../model/user');
+
 const router = express.Router();
 
 function generateToken(params = {}) {
@@ -113,6 +114,7 @@ router.post('/resetPassword', async (request, response) => {
 
     if (token !== user.passwordResetToken) {
       return response.status(400).send({ error: 'Token invalid' })
+
     }
 
     const now = new Date();
