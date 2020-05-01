@@ -1,6 +1,6 @@
 'use strict'
 
-const mongoose = require('../../database/index');
+const mongoose = require('../../database/index')
 
 const TaskSchema = new mongoose.Schema({
 
@@ -9,7 +9,7 @@ const TaskSchema = new mongoose.Schema({
     require: true,
   },
 
-  // (Pertence)
+  // [Pertence]
 
   project: {
     type: mongoose.Schema.Types.ObjectId,
@@ -17,7 +17,7 @@ const TaskSchema = new mongoose.Schema({
     require: true,
   },
 
-  // (Atribuído)
+  // [Atribuído]
 
   assignedTo: {
     type: mongoose.Schema.Types.ObjectId,
@@ -35,8 +35,8 @@ const TaskSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-});
+})
 
-const Task = mongoose.model('Task', TaskSchema);
+const Task = mongoose.model('Task', TaskSchema)
 
-module.exports = Task;
+module.exports = Task

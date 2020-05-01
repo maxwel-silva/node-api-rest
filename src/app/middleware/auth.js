@@ -4,13 +4,13 @@ const jwt = require('jsonwebtoken')
 const authConfig = require('../../config/auth.json')
 
 module.exports = (request, response, next) => {
-  const authHeader = request.headers.authorization;
+  const authHeader = request.headers.authorization
 
   if (!authHeader) {
     return response.status(401).send({ error: 'No token provided' })
   }
 
-  const parts = authHeader.split(' ');
+  const parts = authHeader.split(' ')
 
   if (!parts.length === 2) {
     return response.status(401).send({ error: 'Token error' })
@@ -27,8 +27,8 @@ module.exports = (request, response, next) => {
       return response.status(401).send({ error: 'Token invalid' })
     }
 
-    request.userId = decoded.id;
-    return next();
+    request.userId = decoded.id
+    return next()
 
-  });
-};
+  })
+}

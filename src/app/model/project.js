@@ -1,6 +1,8 @@
 'use strict'
 
-const mongoose = require('../../database/index');
+const mongoosePaginate = require('mongoose-paginate')
+
+const mongoose = require('../../database/index')
 
 const ProjectSchema = new mongoose.Schema({
 
@@ -14,7 +16,7 @@ const ProjectSchema = new mongoose.Schema({
     require: true,
   },
 
-  // (Pertence)
+  // [Pertence]
 
   user: {
     type: mongoose.Schema.Types.ObjectId,
@@ -22,7 +24,7 @@ const ProjectSchema = new mongoose.Schema({
     require: true,
   },
 
-  // (Multi Tasks)
+  // [Multi Tasks]
 
   tasks: [{
     type: mongoose.Schema.Types.ObjectId,
@@ -33,8 +35,10 @@ const ProjectSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-});
+})
 
-const Project = mongoose.model('Project', ProjectSchema);
+ProjectSchema.plugin(mongoosePaginate)
 
-module.exports = Project;
+const Project = mongoose.model('Project', ProjectSchema)
+
+module.exports = Project

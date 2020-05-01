@@ -1,6 +1,6 @@
 'use strict'
 
-const mongoose = require('../../database/index');
+const mongoose = require('../../database/index')
 const bcrypt = require('bcryptjs')
 
 const UserSchema = new mongoose.Schema({
@@ -37,15 +37,15 @@ const UserSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-});
+})
 
 UserSchema.pre('save', async function (next) {
   const hash = await bcrypt.hash(this.password, 1)
-  this.password = hash;
+  this.password = hash
 
-  next();
-});
+  next()
+})
 
-const User = mongoose.model('User', UserSchema);
+const User = mongoose.model('User', UserSchema)
 
-module.exports = User;
+module.exports = User
