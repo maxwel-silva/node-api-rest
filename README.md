@@ -27,4 +27,4 @@
 
 ---
 
-Made with ?? by [maxwel-silva](https://github.com/maxwel-silva)
+Made with ♥ by [maxwel-silva](https://github.com/maxwel-silva)
