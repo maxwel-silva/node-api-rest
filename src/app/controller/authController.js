@@ -130,6 +130,6 @@ router.post('/resetPassword', async (request, response) => {
   } catch (error) {
     response.status(400).send({ error: 'Cannot reset password, try again' })
   }
-});
+})
 
 module.exports = (app) => app.use('/auth', router)
