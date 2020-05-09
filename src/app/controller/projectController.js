@@ -23,7 +23,6 @@ router.post('/', async (request, response) => {
       await projectTask.save()
 
       project.tasks.push(projectTask)
-
     }))
 
     await project.save()
