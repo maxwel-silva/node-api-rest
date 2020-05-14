@@ -16,15 +16,11 @@ const ProjectSchema = new mongoose.Schema({
     require: true,
   },
 
-  // [Pertence]
-
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     require: true,
   },
-
-  // [Multi Tasks]
 
   tasks: [{
     type: mongoose.Schema.Types.ObjectId,
