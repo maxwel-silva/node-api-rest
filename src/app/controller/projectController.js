@@ -36,6 +36,7 @@ router.post('/', async (request, response) => {
 
 router.get('/', async (request, response) => {
   try {
+    
     const { page = 1 } = request.query
 
     const projects = await Project.paginate({}, { page, limit: 5 })

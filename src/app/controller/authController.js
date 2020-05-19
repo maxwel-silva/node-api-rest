@@ -94,7 +94,6 @@ router.post('/forgotPassword', async (request, response) => {
         return response.status(200).send({ successfully: 'Your token was sent' })
       }
     })
-
   } catch (error) {
     response.status(400).send({ error: 'Error on forgot password, try again' })
   }
@@ -114,7 +113,6 @@ router.post('/resetPassword', async (request, response) => {
 
     if (token !== user.passwordResetToken) {
       return response.status(400).send({ error: 'Token invalid' })
-
     }
 
     const now = new Date()
